@@ -58,18 +58,20 @@ export const App = () => {
               <Route
                 path="dashboard/*"
                 element={
-                  <AuthenticatedRouteGuard>
+                  <DashboardRoutes />
+                  /*<AuthenticatedRouteGuard>
                     <DashboardRoutes />
-                  </AuthenticatedRouteGuard>
+                  </AuthenticatedRouteGuard>*/
                 }
               />
 
               <Route
                 path="admin/*"
                 element={
-                  <AdminRouteGuard>
+                  <AdminRoutes />
+                  /*<AdminRouteGuard>
                     <AdminRoutes />
-                  </AdminRouteGuard>
+                  </AdminRouteGuard>*/
                 }
               />
 
