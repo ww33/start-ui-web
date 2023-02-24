@@ -45,6 +45,7 @@
     "axios": "1.2.0",
     "cypress": "11.2.0",
     "dayjs": "1.11.6",
+    "date-fns": "^2.29.3",
     "framer-motion": "7.6.15",
     "i18next": "22.0.6",
     "isomorphic-form-data": "2.0.0",
