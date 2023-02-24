@@ -13,9 +13,9 @@ const restClientOptions = {
   // override the max size of the request window (in ms) [Переопределить максимальный размер окна запроса (в мс)]
   recv_window: 30000,
   /** Your API key */
-  key: API_KEY,
+  /*key: API_KEY,*/
   /** Your API secret */
-  secret: PRIVATE_KEY,
+  /*secret: PRIVATE_KEY,*/
   /** Set to `true` to connect to testnet. Uses the live environment by default. */
   testnet,
 

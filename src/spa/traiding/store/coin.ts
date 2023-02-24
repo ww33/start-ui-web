@@ -3,11 +3,12 @@ import { TCoin, IOHLCData } from '../types';
 import { getKlineFx } from './effects/linearPublic';
 
 export const evtChangeCoin = createEvent<string>();
-export const evtLoadCandles = createEvent();
+export const evtLoadCandles = createEvent<unknown>();
 const currentCoinKey = 'currentCoin';
 const coinDefault: string = 'BTC';
 
 export const $candles = createStore<IOHLCData[] | undefined>([]);
+$candles.watch(evt => console.log(evt))
 
 export const $coin = createStore<string>('')
   .on(evtChangeCoin, (_, coin) => coin);
@@ -24,7 +25,7 @@ sample({
   fn: ({ result }) => (result),
   target: $candles,
 });
-//$candles.watch(evt => console.log(evt))
+
 
 // //const currentCoin = type window !== "undefined" ? window.localStorage.getItem(currentCoinKey) || coinDefault: coinDefault
 evtChangeCoin(coinDefault);

@@ -7,6 +7,7 @@ import {
   AlertTitle,
   Box,
   Button,
+  ButtonGroup,
   Heading,
   Text,
   Wrap,
@@ -19,6 +20,7 @@ import { FiAlertCircle } from 'react-icons/fi';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/spa/layout';
+import {evtLoadCandles} from '../traiding/store/coin'
 
 export const PageDashboard = () => {
   const { t } = useTranslation(['dashboard']);
@@ -35,21 +37,10 @@ export const PageDashboard = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <Alert status="success" colorScheme="brand" borderRadius="md">
-                <AlertIcon />
-                <Box flex="1">
-                  <AlertTitle fontSize="lg">
-                    {t('dashboard:welcome.title')}
-                  </AlertTitle>
-                  <AlertDescription display="block">
-                    {t('dashboard:welcome.description')}
-                    <br />
-                    <Text as="a" href="https://www.bearstudio.fr">
-                      <Trans t={t} i18nKey="dashboard:welcome.author" />
-                    </Text>
-                  </AlertDescription>
-                </Box>
-              </Alert>
+              <ButtonGroup size='sm' variant='outline' spacing='6'>
+                <Button colorScheme='blue' onClick={evtLoadCandles}>evtLoadCandles</Button>
+                <Button>Cancel</Button>
+              </ButtonGroup>
             </TabPanel>
             <TabPanel>
               <Wrap mt="4" spacing="4">
