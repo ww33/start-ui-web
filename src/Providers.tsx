@@ -34,7 +34,7 @@ export const Providers: FC<React.PropsWithChildren<unknown>> = ({
   children,
 }) => {
   const { i18n } = useTranslation();
-  const { isLoadingMocks } = useMocksServer();
+  //const { isLoadingMocks } = useMocksServer();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -47,7 +47,7 @@ export const Providers: FC<React.PropsWithChildren<unknown>> = ({
                 ?.dir ?? 'ltr',
           }}
         >
-          {!isLoadingMocks && children}
+          {children}
         </ChakraProvider>
       </AuthProvider>
     </QueryClientProvider>
