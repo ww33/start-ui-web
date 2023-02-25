@@ -106,7 +106,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Viewport>
           <Component {...pageProps} />
         </Viewport>
-        {/*<AppDevHint />*/}
+        <AppDevHint />
       </ErrorBoundary>
     </Providers>
   );
