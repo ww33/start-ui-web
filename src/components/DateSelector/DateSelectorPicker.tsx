@@ -42,7 +42,7 @@ export const DateSelectorPicker: FC<DateSelectorPickerProps> = ({
     useDateSelectorContext();
   const { i18n } = useTranslation();
 
-  const dayPicker = (
+  /*const dayPicker = (
     <DayPicker
       locale={i18n.language}
       initialMonth={date.toDate()}
@@ -60,7 +60,7 @@ export const DateSelectorPicker: FC<DateSelectorPickerProps> = ({
       firstDayOfWeek={1}
       {...rest}
     />
-  );
+  );*/
 
   if (isMobile) {
     return (
@@ -69,7 +69,7 @@ export const DateSelectorPicker: FC<DateSelectorPickerProps> = ({
         <Modal isOpen={isOpen} onClose={onClose} size="xs">
           <ModalOverlay />
           <ModalContent>
-            <ModalBody>{dayPicker}</ModalBody>
+            {/*<ModalBody>{dayPicker}</ModalBody>*/}
           </ModalContent>
         </Modal>
       </>
@@ -95,7 +95,7 @@ export const DateSelectorPicker: FC<DateSelectorPickerProps> = ({
             borderColor="gray.200"
             _dark={{ borderColor: 'gray.900' }}
           >
-            {dayPicker}
+            {/*{dayPicker}*/}
           </PopoverBody>
         </ReactFocusLock>
       </PopoverContent>

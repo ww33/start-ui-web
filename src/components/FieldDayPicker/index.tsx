@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FieldProps, useField, useForm } from '@formiz/core';
 import { useTranslation } from 'react-i18next';
 
-import { DayPicker } from '@/components/DayPicker';
+//import { DayPicker } from '@/components/DayPicker';
 import { FormGroup, FormGroupProps } from '@/components/FormGroup';
 
 export type FieldDayPickerProps = FieldProps &
@@ -11,7 +11,7 @@ export type FieldDayPickerProps = FieldProps &
     invalidMessage?: string;
   };
 
-export const FieldDayPicker = (props: FieldDayPickerProps) => {
+/*export const FieldDayPicker = (props: FieldDayPickerProps) => {
   const { t } = useTranslation(['components']);
   const { invalidMessage, ...fieldProps } = props;
   const { invalidateFields } = useForm({ subscribe: false });
@@ -77,4 +77,4 @@ export const FieldDayPicker = (props: FieldDayPickerProps) => {
       {children}
     </FormGroup>
   );
-};
+};*/

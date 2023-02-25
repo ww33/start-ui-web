@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import { DayModifiers } from 'react-day-picker';
+// @ts-ignore
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { useTranslation } from 'react-i18next';
 import { FiCalendar } from 'react-icons/fi';
