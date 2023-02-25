@@ -1,5 +1,6 @@
 import { createStore, createEvent, sample, merge } from 'effector';
-import { TCoin, IOHLCData } from '../types';
+import { RSI } from '@debut/indicators';
+import { TCoin, Tohlc, Tohlc_rsi_ema } from '../types';
 import { getKlineFx } from './effects/linearPublic';
 
 export const evtChangeCoin = createEvent<string>();
@@ -7,8 +8,18 @@ export const evtLoadCandles = createEvent<unknown>();
 const currentCoinKey = 'currentCoin';
 const coinDefault: string = 'BTC';
 
-export const $candles = createStore<IOHLCData[] | undefined>([]);
-$candles.watch(evt => console.log(evt))
+export const $candles = createStore<Tohlc[] | undefined>([]);
+//let $candlesRsiEma = createStore<Tohlc_rsi_ema[] | undefined>([]);
+
+const $candlesRsiEma = $candles.map((st) => {
+  const  rsi = new RSI(14)
+  return st ? st.map(st => {
+    const { close, date } = st;
+    return {close, date, ema:1, rsi:rsi.nextValue(close)};
+  }) : undefined;
+});
+
+$candlesRsiEma.watch(evt => console.log(evt))
 
 export const $coin = createStore<string>('')
   .on(evtChangeCoin, (_, coin) => coin);

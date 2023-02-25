@@ -4,11 +4,11 @@ import { getLinearClientClientPublic } from './clients';
 
 const clientPublic = getLinearClientClientPublic();
 
-export const getKlineFx = createEffect(async (symbol: string) => {
-  const date20days = subDays(new Date(), 20);
+export const getKlineFx = createEffect(async (symbol: string, limit:number = 40) => {
+  const date20days = subDays(new Date(), limit);
   const timestampFrom = Math.round(date20days.getTime() / 1000);
 
-  const params = { symbol: symbol + 'USDT', interval: 'D', from: timestampFrom, limit: 20 };
+  const params = { symbol: symbol + 'USDT', interval: 'D', from: timestampFrom, limit };
 
   const { result, ret_msg, ret_code } = await clientPublic.getKline(params);
   if (ret_code === 0) {
