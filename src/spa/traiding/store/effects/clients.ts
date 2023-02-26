@@ -1,4 +1,4 @@
-import { LinearClient } from 'bybit-api';
+import { ContractClient, LinearClient } from 'bybit-api';
 
 const API_KEY = '';
 const PRIVATE_KEY = '';
