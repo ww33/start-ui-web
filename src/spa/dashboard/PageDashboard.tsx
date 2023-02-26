@@ -28,7 +28,7 @@ export const PageDashboard = () => {
     <Page>
       <PageContent>
         <Heading size="md" mb="4">
-          {t('dashboard:title')}
+          Dashboard v1
         </Heading>
         <Tabs align='end' variant='enclosed'>
           <TabList>
