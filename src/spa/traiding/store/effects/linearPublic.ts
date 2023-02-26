@@ -1,8 +1,8 @@
 import { createEffect } from 'effector';
 import subDays from 'date-fns/subDays';
-import { getLinearClientClientPublic } from './clients';
+import { getLinearClientPublic } from './clients';
 
-const clientPublic = getLinearClientClientPublic();
+const client = getLinearClientPublic();
 
 export const getKlineFx = createEffect(async (symbol: string, limit:number = 40) => {
   const date20days = subDays(new Date(), limit);
@@ -10,7 +10,7 @@ export const getKlineFx = createEffect(async (symbol: string, limit:number = 40)
 
   const params = { symbol: symbol + 'USDT', interval: 'D', from: timestampFrom, limit };
 
-  const { result, ret_msg, ret_code } = await clientPublic.getKline(params);
+  const { result, ret_msg, ret_code } = await client.getKline(params);
   if (ret_code === 0) {
     return result.map(({ open, high, low, close, open_time, volume }) => {
       return {

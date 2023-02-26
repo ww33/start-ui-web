@@ -9,7 +9,7 @@ import { useStore } from 'effector-react';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/spa/layout';
-import { evtLoadCandles } from '../traiding/store/events';
+import { evtLoadCandles, evtLoadContracts } from '../traiding/store/events';
 import { $candlesRsiEma } from '../traiding/store/coin'
 
 export const PageDashboard = () => {
@@ -20,7 +20,7 @@ export const PageDashboard = () => {
     <Page>
       <PageContent>
         <Heading size="md" mb="4">
-          Dashboard v3
+          Dashboard v4
         </Heading>
         <Tabs align='end' variant='enclosed'>
           <TabList>
@@ -33,8 +33,8 @@ export const PageDashboard = () => {
                 <Text>{JSON.stringify(candlesRsiEma[candlesRsiEma?.length -1])}</Text>
               </Box>
               <ButtonGroup size='sm' variant='outline' spacing='6'>
-                <Button colorScheme='blue' onClick={() => evtLoadCandles(null)}>evtLoadCandles</Button>
-                <Button>Cancel</Button>
+                <Button colorScheme='blue' onClick={evtLoadCandles}>evtLoadCandles</Button>
+                <Button onClick={evtLoadContracts}>evtLoadContracts</Button>
               </ButtonGroup>
             </TabPanel>
             <TabPanel>

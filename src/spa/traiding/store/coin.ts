@@ -1,8 +1,9 @@
 import { createStore, createEvent, sample, merge } from 'effector';
 import { RSI } from '@debut/indicators';
 import { TCoin, Tohlc, Tohlc_rsi_ema } from '../types';
-import {evtChangeCoin, evtLoadCandles} from './events'
+import {evtChangeCoin, evtLoadCandles, evtLoadContracts} from './events'
 import { getKlineFx } from './effects/linearPublic';
+import { getContractFx } from './effects/contract';
 
 const currentCoinKey = 'currentCoin';
 const coinDefault: string = 'BTC';
@@ -33,6 +34,10 @@ sample({
   target: $candles,
 });
 
+sample({
+  clock: evtLoadContracts,
+  target: getContractFx,
+});
 
 // //const currentCoin = type window !== "undefined" ? window.localStorage.getItem(currentCoinKey) || coinDefault: coinDefault
 evtChangeCoin(coinDefault);

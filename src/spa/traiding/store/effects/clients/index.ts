@@ -36,17 +36,23 @@ const restClientOptions = {
   //parse_exceptions?: boolean;
 };
 
-export const getLinearClientClientPublic = () => {
+export const getLinearClientPublic = () => {
   return new LinearClient(
     restClientOptions,
     axiosRequestConfig,
   );
 };
 
-export const getLinearClientClientPrivate = () => {
+export const getLinearClientPrivate = () => {
   return new LinearClient(
     restClientOptions,
     axiosRequestConfig,
   );
 };
 
+export const getContractClient = () => {
+  return new ContractClient(
+    restClientOptions,
+    axiosRequestConfig,
+  );
+};
