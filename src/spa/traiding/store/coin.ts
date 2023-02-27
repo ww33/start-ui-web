@@ -2,7 +2,7 @@ import { createStore, createEvent, sample, merge } from 'effector';
 import { RSI } from '@debut/indicators';
 import { TCoin, Tohlc, Tohlc_rsi_ema } from '../types';
 import {evtChangeCoin, evtLoadCandles, evtLoadContracts} from './events'
-import { getKlineFx } from './effects/linearPublic';
+import {getKline15Fx } from './effects/linearPublic';
 import { getContractFx } from './effects/contract';
 
 const currentCoinKey = 'currentCoin';
@@ -25,11 +25,11 @@ sample({
   clock: evtLoadCandles,
   source: $coin,
   fn: (coin) => (coin),
-  target: getKlineFx,
+  target: getKline15Fx,
 });
 
 sample({
-  clock: getKlineFx.done,
+  clock: getKline15Fx.done,
   fn: ({ result }) => (result),
   target: $candles,
 });

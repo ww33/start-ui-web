@@ -6,6 +6,7 @@ import { CgLoadbarDoc } from 'react-icons/cg';
 import { FaGithub } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useStore } from 'effector-react';
+import dayjs from 'dayjs';
 
 import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/spa/layout';
@@ -16,6 +17,11 @@ export const PageDashboard = () => {
   const { t } = useTranslation(['dashboard']);
   const candlesRsiEma = useStore($candlesRsiEma)
 
+  const test = () =>{
+    const a = dayjs()
+    const b = a.add(-15*100, 'm')
+    console.log(b.unix() -a.unix())
+  }
   return (
     <Page>
       <PageContent>
@@ -35,6 +41,7 @@ export const PageDashboard = () => {
               <ButtonGroup size='sm' variant='outline' spacing='6'>
                 <Button colorScheme='blue' onClick={evtLoadCandles}>evtLoadCandles</Button>
                 <Button onClick={evtLoadContracts}>evtLoadContracts</Button>
+                <Button colorScheme='green' onClick={test}>test</Button>
               </ButtonGroup>
             </TabPanel>
             <TabPanel>
