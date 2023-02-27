@@ -25,6 +25,7 @@ export const getKlineDFx = createEffect(async (symbol: string, limit:number = 40
     });
   } else {
     console.error({ ret_code, ret_msg });
+    return []
   }
 });
 
@@ -35,7 +36,7 @@ export const getKline15Fx = createEffect(async (symbol: string, limit: number = 
   const params = { symbol: symbol + 'USDT', interval: '15', from: b.unix() };
 
   const { result, ret_msg, ret_code } = await client.getKline(params);
-  console.log({ result, ret_msg, ret_code });
+  //console.log({ result, ret_msg, ret_code });
   if (ret_code === 0) {
     return result.map(({ open, high, low, close, open_time, volume }) => {
       return {
@@ -49,6 +50,7 @@ export const getKline15Fx = createEffect(async (symbol: string, limit: number = 
     });
   } else {
     console.error({ result, ret_msg, ret_code });
+    return []
   }
 });
 
