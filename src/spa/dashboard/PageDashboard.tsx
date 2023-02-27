@@ -12,10 +12,12 @@ import { Icon } from '@/components/Icons';
 import { Page, PageContent } from '@/spa/layout';
 import { evtLoadCandles, evtLoadContracts } from '../traiding/store/events';
 import { $candlesRsiEma } from '../traiding/store/coin'
+import { $contracts } from '../traiding/store/contract'
 
 export const PageDashboard = () => {
   const { t } = useTranslation(['dashboard']);
   const candlesRsiEma = useStore($candlesRsiEma)
+  const contracts = useStore($contracts)
 
   const test = () =>{
     const a = dayjs()

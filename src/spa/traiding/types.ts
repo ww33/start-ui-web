@@ -23,3 +23,10 @@ export type TOrder = {
   price: number
   direction: 'buy' | 'sell'
 }
+
+export type TContract = {
+  symbol: string
+  contractType: string
+  minTradingQty: number
+  qtyStep: number
+}

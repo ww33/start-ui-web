@@ -1,6 +1,7 @@
 import { createEffect } from 'effector';
 import subDays from 'date-fns/subDays';
 import { getContractClient } from './clients';
+import { throwError } from "rxjs";
 
 const client = getContractClient();
 
@@ -10,21 +11,23 @@ export const getContractFx = createEffect(async () => {
     baseCoin: 'USDT',
     category: 'linear'
   });
-  console.log({ result, retCode, retMsg });
-  /*if (ret_code === 0) {
-    return result.map(({ open, high, low, close, open_time, volume }) => {
+  console.log(result.list)
+  if (retCode === 0) {
+    const res = result.list.map(({symbol, contractType, lotSizeFilter  }) => {
+      const {minTradingQty, qtyStep} = lotSizeFilter
       return {
-        open: Number(open),
-        high: Number(high),
-        low: Number(low),
-        close: Number(close),
-        date: new Date(open_time * 1000),
-        volume: Number(volume),
+        symbol,
+        contractType,
+        minTradingQty,
+        qtyStep
       };
     });
+    return res
   } else {
-    console.error({ ret_code, ret_msg });
-  }*/
+    console.error({ result, retCode, retMsg });
+    throwError(retMsg)
+    return []
+  }
 });
 
 
