@@ -2,8 +2,10 @@
 export const coins = ['BTC', 'ETH', 'XRP'] as const
 
 export type TCoin = typeof coins[number]
+export type TDirection = 'LONG' | 'SHORT' | null
 
 export type Tohlc = {
+  symbol: string;
   close: number;
   date: Date;
   high: number;
@@ -11,11 +13,12 @@ export type Tohlc = {
   open: number;
   volume: number;
 }
-export type Tohlc_rsi_ema = {
+
+export type Tohlc_rsi_ma = {
   close: number;
   date: Date;
   rsi: number | undefined;
-  ema: number | undefined;
+  ma: number | undefined;
 }
 
 export type TOrder = {

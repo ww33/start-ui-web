@@ -1,49 +1,56 @@
-import { createStore, createEvent, sample, merge } from 'effector';
-import { RSI, SMA } from '@debut/indicators';
-import { Tohlc } from '../types';
-import { evtChangeCoin, evtLoadCandles} from './events'
-import { getKline15Fx } from './effects/linearPublic';
+import { RSI, SMA, SuperTrend as SUPER_TREND } from '@debut/indicators';
+import { createEvent, createStore, merge, sample } from 'effector';
 
-const currentCoinKey = 'currentCoin';
-const coinDefault: string = 'BTC';
+import { TDirection, Tohlc } from '../types';
+import { getKline60minFx } from './effects/linearPublicEffects';
+import { evtChangeCoin, evtLoadCandles } from './events';
+
+const coinDefault: string = 'MASKUSDT';
 
 export const $candles = createStore<Tohlc[]>([]);
 
-export const $candlesRsiEma = $candles.map((st) => {
-  const Rsi = new RSI(14)
-  const Ema = new SMA(14)
-  return st
-    .map(({close, date}) => {
-      const rsi = Rsi.nextValue(close)
-      const ema = rsi ? Ema.nextValue(rsi) : 0
-      return {close, date, rsi, ema};
+export const $candlesRsiEma = $candles.map((state) => {
+  const Rsi = new RSI(14);
+  const Sma = new SMA(14);
+  const SuperTrend = new SUPER_TREND();
+  return state
+    .map((item) => {
+      const { high, low, close } = item;
+      const rsi = Rsi.nextValue(close);
+      const maRsi = rsi ? Sma.nextValue(rsi) : 0;
+      const trendObj = SuperTrend.nextValue(high, low, close);
+      const direction = trendObj?.direction;
+      const trend: TDirection = direction
+        ? direction === -1
+          ? 'LONG'
+          : 'SHORT'
+        : null;
+      return { ...item, rsi, maRsi, trend };
     })
     .map((item, index, array) => {
-      return {...item, rsiPrev: array[index - 1]?.rsi}
-    })
-})
+      return { ...item, rsiPrev: array[index - 1]?.rsi };
+    });
+});
 
-$candlesRsiEma.watch(e => console.log({e}))
+//$candlesRsiEma.watch((e) => console.log({ e }));
 
-export const $coin = createStore<string>('')
-  .on(evtChangeCoin, (_, coin) => coin);
+export const $coin = createStore<string>('').on(
+  evtChangeCoin,
+  (_, coin) => coin
+);
 
 sample({
   clock: evtLoadCandles,
   source: $coin,
-  fn: (coin) => (coin),
-  target: getKline15Fx,
+  fn: (symbol) => symbol,
+  target: getKline60minFx,
 });
 
 sample({
-  clock: getKline15Fx.done,
-  fn: ({result}) => (result),
+  clock: getKline60minFx.done,
+  fn: ({ result }) => result,
   target: $candles,
 });
 
 // //const currentCoin = type window !== "undefined" ? window.localStorage.getItem(currentCoinKey) || coinDefault: coinDefault
 evtChangeCoin(coinDefault);
-/*setInterval(() => {
-  changeCoin($coin.getState())
-}, 20000)*/
-
