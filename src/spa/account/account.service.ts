@@ -39,7 +39,7 @@ export const useAccount = (
     }
   );
   const isAdmin = !!account?.authorities?.includes('ROLE_ADMIN');*/
-  return { account: {login:'admin', email:'yinfo@mail.ru'}, isAdmin:true, ...config };//TODO
+  return { account: {login:'admin', email:'yinfo@mail.ru'}, isAdmin:true, isLoading:false, ...config };//TODO
 };
 
 type AccountError = {
