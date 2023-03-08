@@ -28,7 +28,7 @@ export const PageDashboard = () => {
     <Page>
       <PageContent>
         <Heading size="md" mb="4">
-          Dashboard v5
+          Dashboard v6
         </Heading>
         <Tabs align="end" variant="enclosed">
           <TabList>
