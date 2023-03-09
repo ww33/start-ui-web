@@ -47,7 +47,6 @@
     "axios": "1.2.0",
     "bybit-api": "^3.5.2",
     "cypress": "11.2.0",
-    "date-fns": "^2.29.3",
     "dayjs": "1.11.6",
     "effector": "22.5.1",
     "effector-react": "^22.5.0",

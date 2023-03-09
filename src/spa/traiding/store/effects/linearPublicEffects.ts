@@ -1,4 +1,3 @@
-import subDays from 'date-fns/subDays';
 import dayjs from 'dayjs';
 import { createEffect } from 'effector';
 
@@ -6,6 +5,7 @@ import { getLinearClientPublic } from '../utils/client';
 
 const client = getLinearClientPublic();
 
+/*//import subDays from 'date-fns/subDays';
 export const getKline1DFx = createEffect(
   async (symbol: string, limit: number = 40) => {
     const date20days = subDays(new Date(), limit);
@@ -35,7 +35,7 @@ export const getKline1DFx = createEffect(
       return [];
     }
   }
-);
+);*/
 
 export const getKline15minFx = createEffect(
   async (symbol: string, limit: number = 100) => {
