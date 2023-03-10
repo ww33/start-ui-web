@@ -9,16 +9,16 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import dayjs from 'dayjs';
 import { useStore } from 'effector-react';
 
 import { Page, PageContent } from '@/spa/layout';
 
-import { $candlesRsiEma } from '../traiding/store/coin';
-import { $contracts } from '../traiding/store/contract';
-import { evtLoadCandles, evtLoadContracts } from '../traiding/store/events';
-import { getContracts } from '../traiding/store/utils/idb';
-import { testSpeech } from '../traiding/store/utils/speech';
+import { $candlesRsiEma } from '@/spa/traiding/store/coin';
+import { $contracts } from '@/spa/traiding/store/contract';
+import { evtLoadCandles, evtLoadContracts } from '@/spa/traiding/store/events';
+import { getContracts } from '@/spa/traiding/store/utils/idb';
+import { testSpeech } from '@/spa/traiding/store/utils/speech';
+import { DateInterval } from "@/spa/traiding/ui/DateInterval";
 
 export const PageDashboard = () => {
   const candlesRsiEma = useStore($candlesRsiEma);
@@ -37,6 +37,9 @@ export const PageDashboard = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
+              <Box>
+                <DateInterval />
+              </Box>
               <Box>
                 <Text>
                   {JSON.stringify(candlesRsiEma[candlesRsiEma?.length - 1])}

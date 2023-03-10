@@ -2,7 +2,7 @@ import { RSI, SMA, SuperTrend as SUPER_TREND } from '@debut/indicators';
 import { createEvent, createStore, merge, sample } from 'effector';
 
 import { TDirection, Tohlc } from '../types';
-import { getKline60minFx } from './effects/linearPublicEffects';
+import { getKline60minFx } from './effects/linearPublicEndPoint';
 import { evtChangeCoin, evtLoadCandles } from './events';
 
 const coinDefault: string = 'MASKUSDT';

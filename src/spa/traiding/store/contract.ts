@@ -1,7 +1,7 @@
 import { createStore, sample } from 'effector';
 
 import { TContract, Tohlc } from '../types';
-import { getContractFx } from './effects/contractEffects';
+import { getContractFx } from './effects/contractEndPoint';
 import { evtLoadContracts } from './events';
 import { setContracts } from './utils/idb';
 
