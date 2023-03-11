@@ -1,7 +1,6 @@
 import { createEffect } from 'effector';
-import { throwError } from 'rxjs';
 
-import { getContractClient } from '../utils/client';
+import { getContractClient } from '@/spa/trading/utils/client';
 
 const client = getContractClient();
 
@@ -22,7 +21,6 @@ export const getContractFx = createEffect(async () => {
     });
   } else {
     console.error({ result, retCode, retMsg });
-    throwError(retMsg);
-    return [];
+    throw(retMsg);
   }
 });

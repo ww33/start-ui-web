@@ -1,5 +1,5 @@
 import { set, get, clear } from 'idb-keyval';
-import {TContract} from '../../types'
+import {TContract} from '@/spa/trading/types'
 
 export const DB_KEYS = {
   CONTRACTS_ALL:'CONTRACTS_ALL'

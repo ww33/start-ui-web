@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { createEffect } from 'effector';
 
-import { getLinearClientPublic } from '../utils/client';
+import { getLinearClientPublic } from '@/spa/trading/utils/client';
 
 const client = getLinearClientPublic();
 
