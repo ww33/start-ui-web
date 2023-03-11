@@ -1,11 +1,19 @@
 import { set, get, clear } from 'idb-keyval';
-import {TContract} from '@/spa/trading/types'
+import {TContract, Tohlc} from '@/spa/trading/types'
 
 /*CANDLES*/
 const getCandleKey = (symbol: string, date: string)=> {
   return `${symbol}15_${date}`
 }
 
+export const getCandles = async (symbol: string, date: string): Promise<Tohlc[]> => {
+  return  new Promise((resolve, reject) => {
+    const key = getCandleKey(symbol, date)
+    get(key)
+      .then((val) => resolve(val))
+      .catch((err) => reject(err));
+  })
+}
 
 /*CONTRACTS*/
 export const DB_KEYS = {
