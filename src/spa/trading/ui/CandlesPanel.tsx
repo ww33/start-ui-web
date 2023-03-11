@@ -9,11 +9,12 @@ import {
 import { testSpeech } from '@/spa/trading/utils/speech';
 import { DateInterval, $dateRange } from "@/spa/trading/ui/DateInterval";
 import { useStore } from 'effector-react';
+import { loadCandlesByInterval } from "@/spa/trading/utils/candles";
 
 export const CandlesPanel = () => {
   const dateRange = useStore($dateRange)
-  const handleLoad = () => {
-    console.log(dateRange)
+  const handleLoad = async () => {
+    loadCandlesByInterval().catch(e => console.error(e))
   }
   return (
     <>

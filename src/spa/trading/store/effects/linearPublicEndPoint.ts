@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 import { createEffect } from 'effector';
 
 import { getLinearClientPublic } from '@/spa/trading/utils/client';
+import { set } from "idb-keyval";
+import { DB_KEYS } from "@/spa/trading/utils/idb";
 
 const client = getLinearClientPublic();
 

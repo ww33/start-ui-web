@@ -5,7 +5,7 @@ import { TDirection, Tohlc } from '../types';
 import { getKline60minFx } from './effects/linearPublicEndPoint';
 import { evtChangeCoin, evtLoadCandles } from './events';
 
-const coinDefault: string = 'MASKUSDT';
+const coinDefault: string = 'BTCUSDT';
 
 export const $candles = createStore<Tohlc[]>([]);
 
@@ -36,7 +36,7 @@ export const $candlesRsiEma = $candles.map((state) => {
 export const $coin = createStore<string>('')
   .on(evtChangeCoin, (_, coin) => coin
   );
-
+evtChangeCoin(coinDefault);
 sample({
   clock: evtLoadCandles,
   source: $coin,
@@ -51,4 +51,4 @@ sample({
 });
 
 // //const currentCoin = type window !== "undefined" ? window.localStorage.getItem(currentCoinKey) || coinDefault: coinDefault
-evtChangeCoin(coinDefault);
+
