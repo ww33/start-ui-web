@@ -11,7 +11,7 @@ export const TradingPanel = () => {
   return (
     <>
       <Heading size="md" mb="4">
-        Trading Panel v1
+        Trading Panel v2
       </Heading>
       <Tabs align="end" variant="enclosed">
         <TabList>

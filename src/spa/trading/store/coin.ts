@@ -15,7 +15,7 @@ export const $candlesRsiEma = $candles.map((state) => {
   const SuperTrend = new SUPER_TREND();
   return state
     .map((item) => {
-      const { high, low, close } = item;
+      const {high, low, close} = item;
       const rsi = Rsi.nextValue(close);
       const maRsi = rsi ? Sma.nextValue(rsi) : 0;
       const trendObj = SuperTrend.nextValue(high, low, close);
@@ -25,19 +25,17 @@ export const $candlesRsiEma = $candles.map((state) => {
           ? 'LONG'
           : 'SHORT'
         : null;
-      return { ...item, rsi, maRsi, trend };
+      return {...item, rsi, maRsi, trend};
     })
     .map((item, index, array) => {
-      return { ...item, rsiPrev: array[index - 1]?.rsi };
+      return {...item, rsiPrev: array[index - 1]?.rsi};
     });
 });
 
-//$candlesRsiEma.watch((e) => console.log({ e }));
 
-export const $coin = createStore<string>('').on(
-  evtChangeCoin,
-  (_, coin) => coin
-);
+export const $coin = createStore<string>('')
+  .on(evtChangeCoin, (_, coin) => coin
+  );
 
 sample({
   clock: evtLoadCandles,
@@ -48,7 +46,7 @@ sample({
 
 sample({
   clock: getKline60minFx.done,
-  fn: ({ result }) => result,
+  fn: ({result}) => result,
   target: $candles,
 });
 

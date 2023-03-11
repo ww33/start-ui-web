@@ -1,30 +1,36 @@
-import { Kbd, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { ButtonGroup, Stack, Text } from "@chakra-ui/react";
 import {
   DateSelector,
   DateSelectorNextDayButton,
   DateSelectorPicker,
   DateSelectorPreviousDayButton
 } from "@/components/DateSelector";
-import dayjs from "dayjs";
 
+import dayjs, { Dayjs } from "dayjs";
 
+import { createEvent, createStore, merge, sample } from 'effector';
+import { useStore } from 'effector-react';
+
+export const onChangeStart = createEvent<Dayjs>();
+export const $start = createStore<Dayjs>(dayjs()).on(onChangeStart, (_, val) => val)
+export const onChangeEnd = createEvent<Dayjs>();
+export const $end = createStore<Dayjs>(dayjs()).on(onChangeEnd, (_, val) => val)
 
 export const DateInterval = () => {
-  const [selectedDate, setSelectedDate] = useState(dayjs());
-
+  const start = useStore($start)
+  const end = useStore($end)
   return (
-    <Stack spacing="8">
-      <DateSelector date={selectedDate} onChange={setSelectedDate}>
-        <DateSelectorPreviousDayButton aria-label="Previous day" />
-        <DateSelectorPicker />
-        <DateSelectorNextDayButton aria-label="Next day" />
+    <ButtonGroup size="sm">
+      <DateSelector date={start} onChange={onChangeStart}>
+        <DateSelectorPreviousDayButton aria-label="Previous day"/>
+        <DateSelectorPicker/>
+        <DateSelectorNextDayButton aria-label="Next day"/>
       </DateSelector>
-
-      <Text>
-        You can use the <Kbd>ArrowLeft</Kbd> to go to the previous day, and the{' '}
-        <Kbd>ArrowRight</Kbd> to go to the next day.
-      </Text>
-    </Stack>
+      <DateSelector date={end} onChange={onChangeEnd}>
+        <DateSelectorPreviousDayButton aria-label="Previous day"/>
+        <DateSelectorPicker/>
+        <DateSelectorNextDayButton aria-label="Next day"/>
+      </DateSelector>
+    </ButtonGroup>
   );
 }
