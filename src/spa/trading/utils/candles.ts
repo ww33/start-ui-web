@@ -3,8 +3,26 @@ import { getLinearClientPublic } from './client';
 import { $dateRange } from '../ui/DateInterval'
 import { $coin } from '../store/coin'
 import { getCandles, setCandles } from './idb'
+import {Tohlc} from '@/spa/trading/types'
 
 const client = getLinearClientPublic();
+
+export const getCandlesByInterval = async (): Promise<Tohlc[]> => {
+  return new Promise(async (resolve, reject) => {
+    let allCandles:Tohlc[] = []
+    const dateRange = $dateRange.getState()
+    const symbol = $coin.getState()
+    for (const date of dateRange) {
+      try {
+        const candlesSaved = await getCandles(symbol, date);
+        allCandles = allCandles.concat(candlesSaved)
+      } catch (e) {
+        reject(e)
+      }
+    }
+    resolve(allCandles)
+  })
+}
 
 export const loadCandlesByInterval = async (): Promise<Boolean> => {
   return new Promise(async (resolve, reject) => {
