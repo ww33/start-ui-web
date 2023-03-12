@@ -3,11 +3,12 @@ import { createEvent, createStore, merge, sample } from 'effector';
 
 import { TDirection, Tohlc } from '../types';
 import { getKline60minFx } from './effects/linearPublicEndPoint';
-import { evtChangeCoin, evtLoadCandles } from './events';
+import { evtChangeCoin, evtLoadCandles, evtSetCandles } from './events';
 
 const coinDefault: string = 'BTCUSDT';
 
-export const $candles = createStore<Tohlc[]>([]);
+export const $candles = createStore<Tohlc[]>([])
+  .on(evtSetCandles,(_, arr) => arr )
 
 export const $candlesRsiEma = $candles.map((state) => {
   const Rsi = new RSI(14);
@@ -31,6 +32,7 @@ export const $candlesRsiEma = $candles.map((state) => {
       return {...item, rsiPrev: array[index - 1]?.rsi};
     });
 });
+$candlesRsiEma.watch(arr => console.log(arr[arr.length-1]))
 
 
 export const $coin = createStore<string>('')

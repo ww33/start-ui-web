@@ -58,7 +58,7 @@ export const loadCandlesByInterval = async (): Promise<Boolean> => {
             reject({result, ret_msg, ret_code});
           }
         } else {
-          console.log(`${symbol} за ${date} загружено`)
+          //console.log(`${symbol} за ${date} загружено`)
         }
       } catch (e) {
         reject(e)
