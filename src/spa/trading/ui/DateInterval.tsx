@@ -35,14 +35,14 @@ export const DateInterval = () => {
   return (
     <ButtonGroup size="sm">
       <DateSelector date={start} onChange={onChangeStart}>
-        <DateSelectorPreviousDayButton aria-label="Previous day"/>
+        <DateSelectorPreviousDayButton colorScheme="orange" aria-label="Previous day"/>
         <DateSelectorPicker/>
-        <DateSelectorNextDayButton aria-label="Next day"/>
+        <DateSelectorNextDayButton colorScheme="messenger" aria-label="Next day"/>
       </DateSelector>
       <DateSelector date={end} onChange={onChangeEnd}>
-        <DateSelectorPreviousDayButton aria-label="Previous day"/>
+        <DateSelectorPreviousDayButton colorScheme="orange" aria-label="Previous day"/>
         <DateSelectorPicker/>
-        <DateSelectorNextDayButton aria-label="Next day"/>
+        <DateSelectorNextDayButton colorScheme="telegram" aria-label="Next day"/>
       </DateSelector>
     </ButtonGroup>
   );

@@ -13,14 +13,12 @@ export const loadCandlesByInterval = async (): Promise<Boolean> => {
     for (const date of dateRange) {
       try {
         const candlesSaved = await getCandles(symbol, date);
-        if (!candlesSaved) {
-          const start = dayjs(date).startOf('day')
-          //const end = dayjs(date).endOf('day')
-          /*console.log('start', start.unix())
-          console.log('end', end.unix())*/
-          const params = {symbol, interval: '15', from: start.unix(), limit: 96};
+        if (!candlesSaved || date === dayjs().format('YYYY-MM-DD')) {
 
+          const from = dayjs(date).startOf('day').unix()
+          const params = {symbol, interval: '15', from, limit: 96};
           const {result, ret_msg, ret_code} = await client.getKline(params);
+
           if (ret_code === 0) {
             const arr = result.map(({open, high, low, close, open_time, volume}) => {
               return {
@@ -33,9 +31,9 @@ export const loadCandlesByInterval = async (): Promise<Boolean> => {
                 symbol,
               };
             })
-            if(arr.length > 0){
+            if (arr.length > 0) {
               const isCandlesSaved = await setCandles(symbol, date, arr)
-              console.log({isCandlesSaved})
+              console.log({date, isCandlesSaved})
             }
           } else {
             console.error({result, ret_msg, ret_code});
