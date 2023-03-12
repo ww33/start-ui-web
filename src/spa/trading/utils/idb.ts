@@ -15,6 +15,14 @@ export const getCandles = async (symbol: string, date: string): Promise<Tohlc[]>
   })
 }
 
+export const setCandles = async (symbol: string, date: string, val: Tohlc[]):Promise<Boolean> => {
+  return  new Promise((resolve, reject) => {
+    const key = getCandleKey(symbol, date)
+    set(key, val)
+      .then(() => resolve(true))
+      .catch((err) => reject(err));
+  })
+}
 /*CONTRACTS*/
 export const DB_KEYS = {
   CONTRACTS_ALL:'CONTRACTS_ALL'
