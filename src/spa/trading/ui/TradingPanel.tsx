@@ -6,6 +6,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
 import { CandlesPanel } from "@/spa/trading/ui/CandlesPanel";
 import { ContractsPanel } from "@/spa/trading/ui/ContractsPanel";
+import {UserScript} from './UserScript'
 
 export const TradingPanel = () => {
   return (
@@ -27,6 +28,7 @@ export const TradingPanel = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <UserScript/>
     </>
   );
 };

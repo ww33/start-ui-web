@@ -7,16 +7,14 @@ import {
 
 import { testSpeech } from '@/spa/trading/utils/speech';
 import { DateInterval, $dateRange } from "@/spa/trading/ui/DateInterval";
-import { getCandlesByInterval, loadCandlesByInterval } from "@/spa/trading/utils/candles";
+import { getCandlesByInterval15, loadCandlesByInterval15 } from "@/spa/trading/utils/candles15";
 import { evtSetCandles } from "@/spa/trading/store/events";
 
 export const CandlesPanel = () => {
-  const handleLoad = async () => {
-    loadCandlesByInterval().catch(e => console.error(e))
-  }
-  const handleGet = async () => {
-    await loadCandlesByInterval().catch(e => console.error(e))
-    const candles =  await getCandlesByInterval().catch(e => console.error(e))
+
+  const handleGet15 = async () => {
+    await loadCandlesByInterval15().catch(e => console.error(e))
+    const candles =  await getCandlesByInterval15().catch(e => console.error(e))
     if(candles && candles.length >0) evtSetCandles(candles)
     //console.log({candles})
   }
@@ -26,7 +24,7 @@ export const CandlesPanel = () => {
         <DateInterval/>
         <ButtonGroup size="sm" variant="outline" spacing="6">
           {/*<Button colorScheme="warning" onClick={handleLoad}>Load candles</Button>*/}
-          <Button colorScheme="green" onClick={handleGet}>Get candles</Button>
+          <Button colorScheme="green" onClick={handleGet15}>Get candles 15</Button>
           {/*<Button colorScheme="green" onClick={testSpeech}>Speech</Button>*/}
         </ButtonGroup>
       </Stack>

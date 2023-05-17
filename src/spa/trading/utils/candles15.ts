@@ -7,7 +7,7 @@ import {Tohlc} from '@/spa/trading/types'
 
 const client = getLinearClientPublic();
 
-export const getCandlesByInterval = async (): Promise<Tohlc[]> => {
+export const getCandlesByInterval15 = async (): Promise<Tohlc[]> => {
   return new Promise(async (resolve, reject) => {
     let allCandles:Tohlc[] = []
     const dateRange = $dateRange.getState()
@@ -24,7 +24,7 @@ export const getCandlesByInterval = async (): Promise<Tohlc[]> => {
   })
 }
 
-export const loadCandlesByInterval = async (): Promise<Boolean> => {
+export const loadCandlesByInterval15 = async (): Promise<Boolean> => {
   return new Promise(async (resolve, reject) => {
     const dateRange = $dateRange.getState()
     const symbol = $coin.getState()
