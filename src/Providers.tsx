@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import '@/config';
-import { AuthProvider } from '@/spa/auth/AuthContext';
+import { AuthProvider } from '@/app/auth/AuthContext';
 import theme from '@/theme';
 
 import { AVAILABLE_LANGUAGES } from './constants/i18n';

@@ -20,7 +20,7 @@ const Loading = () => (
 );
 
 const AppComponent = dynamic<unknown>(
-  () => import('@/spa/App').then((mod) => mod.App),
+  () => import('@/app/App').then((mod) => mod.App),
   {
     ssr: false,
     loading: () => <Loading />,

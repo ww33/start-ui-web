@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Center } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-import { Loader } from '@/spa/layout';
+import { Loader } from '@/app/layout';
 
 const Index = () => {
   const router = useRouter();
