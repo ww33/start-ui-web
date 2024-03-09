@@ -12,7 +12,7 @@ export const TradingPanel = () => {
   return (
     <>
       <Heading size="md" mb="4">
-        Trading Panel v7
+        Trading Panel v8
       </Heading>
       <Tabs align="end" variant="enclosed">
         <TabList>
